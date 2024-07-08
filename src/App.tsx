@@ -1,11 +1,16 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css"
-import { NavBar } from "./Components/NavBar/NavBar";
+import { HomePage } from "./Components/HomePage/HomePage";
+import { MenuPage } from "./Components/NavBar/MenuPage";
 
 const App = () => {
   return (
-    <>
-      <NavBar></NavBar>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/menu" element={<MenuPage />} />
+      </Routes>
+    </Router>
   );
 };
 

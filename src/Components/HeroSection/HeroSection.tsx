@@ -2,20 +2,20 @@ import { Box, Button, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 import COLORS from "../../constants";
 import { useSpring, useTrail, animated } from '@react-spring/web';
-
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled(Box)`
     position: relative;
+    height: 100vh;
     overflow: hidden;
 `
 
 const HeroBanner = styled(Box)`
     position: relative;
     width: 100%;
-    height: 100vh;
-    top: 6.7rem;
-    padding: 1rem;
-    overflow: hidden;
+    height: 100%;
+    // top: 5.5rem;
+    // padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,8 +25,7 @@ const HeroBanner = styled(Box)`
 const HeroBannerBackground = styled("img")`
     position: absolute;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: 100vh;
     z-index: 1;
 `
 
@@ -35,7 +34,8 @@ const ContentWrapper = styled(Box)`
     z-index: 2;
     display: flex;
     flex-direction: row;
-    justify-content: center; 
+    justify-content: center;
+    padding-top: 5rem;
     width: 100%;
 `;
 
@@ -44,14 +44,14 @@ const HeroBannerImg = styled("img")`
     height: auto;
     object-fit: cover;
     padding-right: 10rem;
-    padding-bottom: 7rem;
+    padding-left: 2rem;
 `
 
 const TextWrapper = styled(Box)`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-top: 9rem;
+    padding-top: 12rem;
 `
 
 const AnimatedTypography = animated(Typography);
@@ -96,6 +96,7 @@ const LandingBtn = styled(Button)`
 `
 
 export const HeroSection = () => {
+    const navigate = useNavigate();
     const discoverRadianceSpring = useSpring({ opacity: 1, from: { opacity: 0 }, delay: 700 });
     const trail = useTrail(3, {
         opacity: 1,
@@ -143,11 +144,11 @@ export const HeroSection = () => {
                             Welcome to Making Great Beauty, where wellness meets beauty in perfect harmony.
                             Unwind, <br/> rejuvenate, and embrace your best self with our exclusive range of holistic treatments and spa experiences.
                         </ParagraphText>
-                        <LandingBtn>Step into Serenity</LandingBtn>
+                        <LandingBtn onClick={() => {navigate("/services")}}>Step into Serenity</LandingBtn>
                     </TextWrapper>
 
                 </ContentWrapper>
             </HeroBanner>
-        </Wrapper>
+        </Wrapper> 
     )
 }

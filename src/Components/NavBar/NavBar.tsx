@@ -58,11 +58,12 @@ const StyleToolbar = styled(Toolbar)`
     padding-right: 0.5rem;
   }
 `
-const Home = styled(Typography)`
+
+const HomeText = styled(Typography)`
   font-family: "against";
   color: ${COLORS.font};
   justify-self: left;
-  padding: 1.2rem;
+  padding: 4.5rem;
   display: none;
 
   @media (min-width: 1024px) {
@@ -73,8 +74,8 @@ const Home = styled(Typography)`
 const SideButtonsCont = styled(Box)`
   display: none;
   align-items: center;
-  gap: 8rem;
-  padding-right: 2rem;
+  gap: 6.25rem;
+  padding-right: 4.5rem;
 
   @media (min-width: 1024px) {
     display: flex;
@@ -129,6 +130,7 @@ type NavButtonProps = {
 }
 
 const NavButton: React.FC<NavButtonProps> = ({children}) => {
+  const navigate = useNavigate();
   const [springs, api] = useSpring(() => ({
     transform: 'translateY(0px)',
     config: { tension: 300, friction: 10 }
@@ -138,6 +140,7 @@ const NavButton: React.FC<NavButtonProps> = ({children}) => {
     <AnimatedButton
       onMouseEnter={() => api.start({ transform: 'translateY(-3px)' })}
       onMouseLeave={() => api.start({ transform: 'translateY(0px)' })}
+      onClick={() => {navigate("/services")}}
       style={springs}
     >
       {children}
@@ -159,7 +162,10 @@ export const NavBar = () => {
       <StyledNav>
         <StyleToolbar>
           <Logo src="public/assets/images/MGB_Icon.png"/>
-          <Home variant="h5" textTransform={"uppercase"}>Making Great Beauty</Home>
+
+          <ButtonBase onClick={() => {navigate("/")}}>
+            <HomeText variant="h5" textTransform={"uppercase"}>Making Great Beauty</HomeText>
+          </ButtonBase>
 
           <ButtonBase onClick={handleToggle}>
             <MenuBtn fontSize="large"/>
@@ -175,7 +181,7 @@ export const NavBar = () => {
             </NavButton>
 
             <NavButton>
-              <StyledButtonText variant="h6" textTransform={"uppercase"} letterSpacing={"0.15rem"}>Contact Us</StyledButtonText>
+              <StyledButtonText variant="h6" textTransform={"uppercase"} letterSpacing={"0.15rem"}>Contact</StyledButtonText>
             </NavButton>
           </SideButtonsCont>
         </StyleToolbar>

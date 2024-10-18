@@ -9,7 +9,7 @@ export const HomePage = () => {
         <NavBar></NavBar>
         <HeroSection></HeroSection>
         {/* <AboutPage></AboutPage> */}
-        {/* <ServicesPage></ServicesPage> */}
+        <ServicesPage></ServicesPage>
         </>
     )
 }
